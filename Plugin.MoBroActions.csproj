@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0-windows</TargetFramework>
+        <RootNamespace>MoBro.Plugin.MoBroActions</RootNamespace>
+        <Authors>ModBros</Authors>
+        <Company>ModBros KG</Company>
+        <Product>MoBro</Product>
+        <Description>Action plugin for MoBro</Description>
+        <IsPackable>false</IsPackable>
+        <Title>MoBro Action Plugin</Title>
+        <Copyright>(C) ModBros KG 2025</Copyright>
+        <PackageProjectUrl>https://mobro.app</PackageProjectUrl>
+        <VersionPrefix>1.0.0</VersionPrefix>
+        <Nullable>enable</Nullable>
+        <OutputType>Exe</OutputType>
+        <EnableDynamicLoading>true</EnableDynamicLoading>
+        <UseAppHost>false</UseAppHost>
+        <SelfContained>false</SelfContained>
+        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+        <LangVersion>12</LangVersion>
+        <InvariantGlobalization>true</InvariantGlobalization>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Content Include="*.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="Resources\**\*">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="MoBro.Plugin.SDK" Version="1.0.3" PrivateAssets="all" />
+    </ItemGroup>
+
+</Project>
