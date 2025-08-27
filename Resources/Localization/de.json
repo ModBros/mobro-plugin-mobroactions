@@ -1,0 +1,7 @@
+{
+  "a_start_process_label": "Anwendung starten",
+  "a_start_process_desc": "Ein externes Programm ausführen (Pfad zur .exe Datei)",
+
+  "s_start_process_exe_path_label": "Pfad zur .exe Datei",
+  "s_start_process_exe_path_desc": "Absoluter Pfad zur .exe-Datei der Anwendung (z. B. C:\\Program Files\\App\\app.exe)"
+}

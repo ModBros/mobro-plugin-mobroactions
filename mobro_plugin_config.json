@@ -1,0 +1,20 @@
+{
+  "name": "modbros_mobroactions",
+  "displayName": "MoBro Actions",
+  "author": "ModBros",
+  "description": "Provides essential executable actions for MoBro",
+  "assembly": "Plugin.MoBroActions.dll",
+  "localization": "Resources/Localization",
+  "executionMode": "UserSession",
+  "repository": null,
+  "homepage": null,
+  "tags": [
+    "action",
+    "program",
+    "application",
+    "interactive",
+    "interaction"
+  ],
+  "settings": [
+  ]
+}
