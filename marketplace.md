@@ -27,3 +27,7 @@ Run a script file directly from your dashboard with a single tap.
 
 Input: absolute path (environment variables supported)  
 Supports: .bat, .cmd, .ps1
+
+## Lock workstation
+
+Instantly locks the current Windows session.

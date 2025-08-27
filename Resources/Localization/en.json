@@ -3,6 +3,8 @@
   "a_start_process_desc": "Run an external program (path to its .exe file)",
   "a_invoke_script_label": "Invoke script",
   "a_invoke_script_desc": "Run a script file (.bat, .cmd, or .ps1)",
+  "a_lock_workstation_label": "Lock workstation",
+  "a_lock_workstation_desc": "Immediately locks the current Windows session",
 
   "s_start_process_exe_path_label": "Executable path",
   "s_start_process_exe_path_desc": "Absolute path to the application's .exe file (e.g., C:\\Program Files\\App\\app.exe)",

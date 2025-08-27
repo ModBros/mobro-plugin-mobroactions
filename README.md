@@ -34,7 +34,11 @@ Run a script file directly from your dashboard with a single tap.
 Input: absolute path (environment variables supported)  
 Supports: .bat, .cmd, .ps1
 
-## SDK
+## Lock workstation
+
+Instantly locks the current Windows session.
+
+# SDK
 
 This plugin is built using the [MoBro Plugin SDK](https://github.com/ModBros/mobro-plugin-sdk).  
 Developer documentation is available at [developer.mobro.app](https://developer.mobro.app).

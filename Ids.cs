@@ -6,6 +6,7 @@ internal static class Ids
   {
     internal const string StartProcess = "a_start_process";
     internal const string InvokeScript = "a_invoke_script";
+    internal const string LockWorkstation = "a_lock_workstation";
   }
 
   internal static class ActionSettings
