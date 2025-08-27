@@ -21,9 +21,18 @@ Includes the following action:
 
 ## Launch application
 
-Run an external program directly from your dashboard with a single tap by simply specifying the path to its .exe.  
+Run an external program directly from your dashboard with a single tap.  
 Ideal for opening tools, games, scripts, or utilities.
 
+Input: Absolute path to .exe.
+
+
+## Invoke script
+
+Run a script file directly from your dashboard with a single tap.
+
+Input: absolute path (environment variables supported)  
+Supports: .bat, .cmd, .ps1
 
 ## SDK
 

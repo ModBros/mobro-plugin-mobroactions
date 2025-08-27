@@ -1,7 +1,13 @@
 {
   "a_start_process_label": "Launch application",
   "a_start_process_desc": "Run an external program (path to its .exe file)",
+  "a_invoke_script_label": "Invoke script",
+  "a_invoke_script_desc": "Run a script file (.bat, .cmd, or .ps1)",
 
   "s_start_process_exe_path_label": "Executable path",
-  "s_start_process_exe_path_desc": "Absolute path to the application's .exe file (e.g., C:\\Program Files\\App\\app.exe)"
+  "s_start_process_exe_path_desc": "Absolute path to the application's .exe file (e.g., C:\\Program Files\\App\\app.exe)",
+  "s_invoke_script_path_label": "Script path",
+  "s_invoke_script_path_desc": "Absolute path to the script file (e.g., C:\\Scripts\\run.ps1)",
+  "s_invoke_script_show_shell_label": "Show shell window",
+  "s_invoke_script_show_shell_desc": "Open a console window while running the script (otherwise runs hidden)"
 }
