@@ -38,6 +38,12 @@ Supports: .bat, .cmd, .ps1
 
 Instantly locks the current Windows session.
 
+## Open URL
+
+Open a URL with the default system application (browser).
+
+Input: absolute URL starting with http or https.
+
 # SDK
 
 This plugin is built using the [MoBro Plugin SDK](https://github.com/ModBros/mobro-plugin-sdk).  

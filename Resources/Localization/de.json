@@ -5,11 +5,15 @@
   "a_invoke_script_desc": "Eine Skriptdatei ausführen (.bat, .cmd oder .ps1)",
   "a_lock_workstation_label": "Arbeitsstation sperren",
   "a_lock_workstation_desc": "Sperrt die aktuelle Windows-Sitzung sofort",
+  "a_open_url_label": "URL öffnen",
+  "a_open_url_desc": "Öffnet eine URL mit der Standardanwendung des Systems (Browser)",
 
   "s_start_process_exe_path_label": "Pfad zur .exe Datei",
   "s_start_process_exe_path_desc": "Absoluter Pfad zur .exe-Datei der Anwendung (z. B. C:\\Program Files\\App\\app.exe)",
   "s_invoke_script_path_label": "Pfad zum Skript",
   "s_invoke_script_path_desc": "Absoluter Pfad zur Skriptdatei (z. B. C:\\Scripts\\run.ps1)",
   "s_invoke_script_show_shell_label": "Konsolenfenster anzeigen",
-  "s_invoke_script_show_shell_desc": "Beim Ausführen des Skripts ein Konsolenfenster öffnen (ansonsten verborgen)"
+  "s_invoke_script_show_shell_desc": "Beim Ausführen des Skripts ein Konsolenfenster öffnen (ansonsten verborgen)",
+  "s_open_url_label": "URL",
+  "s_open_url_desc": "Absolute URL beginnend mit http oder https (z. B. https://mobro.app)"
 }
