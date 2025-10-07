@@ -13,7 +13,7 @@
   "s_invoke_script_path_label": "Script path",
   "s_invoke_script_path_desc": "Absolute path to the script file (e.g., C:\\Scripts\\run.ps1)",
   "s_invoke_script_show_shell_label": "Show shell window",
-  "s_invoke_script_show_shell_desc": "Open a console window while running the script (otherwise runs hidden)"
+  "s_invoke_script_show_shell_desc": "Open a console window while running the script (otherwise runs hidden)",
   "s_open_url_label": "URL",
   "s_open_url_desc": "Absolute URL starting with http or https (e.g., https://mobro.app)"
 }
