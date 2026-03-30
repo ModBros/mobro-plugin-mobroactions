@@ -1,39 +1,23 @@
-Provides essential executable actions for MoBro.
+# MoBro Actions
+
+Transform your dashboard into a powerful macro pad.  
+This plugin provides essential interactive actions, allowing you to launch apps, run scripts, and control Windows
+directly from your MoBro device.
 
 ---
 
-# Setup
+## Available Actions
 
-1. Install the plugin from the marketplace.
-2. Open the dashboard builder and add the action.
-3. Provide the necessary action configuration (depending on action).
+- **Launch Application**: Open any tool, game, or utility (supports `.exe`).
+- **Invoke Script**: Run automation scripts with ease (supports `.bat`, `.cmd`, `.ps1`).
+- **Open URL**: Launch your favorite websites in your default browser.
+- **Lock Workstation**: Instantly secure your PC with a single tap.
 
 ---
 
-# Actions
+## Setup & Usage
 
-Includes the following action:
-
-## Launch application
-
-Run an external program directly from your dashboard with a single tap.  
-Ideal for opening tools, games, scripts, or utilities.
-
-Input: Absolute path to .exe.
-
-## Invoke script
-
-Run a script file directly from your dashboard with a single tap.
-
-Input: absolute path (environment variables supported)  
-Supports: .bat, .cmd, .ps1
-
-## Lock workstation
-
-Instantly locks the current Windows session.
-
-## Open URL
-
-Open a URL with the default system application (browser).  
-
-Input: absolute URL starting with http or https.
+1. **Install**: From the MoBro Marketplace.
+2. **Configure**: Open the MoBro Dashboard Builder.
+3. **Assign**: Add an action to a button or any other widget and provide the required configuration.
+4. **Deploy**: Your custom control is ready to use!
