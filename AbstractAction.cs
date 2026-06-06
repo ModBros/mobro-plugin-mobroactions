@@ -42,13 +42,15 @@ public abstract class AbstractAction
   public virtual void Init()
   {
   }
-  
+
   public virtual bool Enabled() => true;
 
   protected abstract string Id { get; }
   protected abstract Task Handler(IMoBroSettings settings);
   protected abstract (string, CoreMetricType)? Metric();
   protected abstract Func<SettingsBuilder.INameStage, SettingsFieldBase>[] Settings();
+  protected virtual string Category() => Ids.Category.MoBroActions;
+  protected virtual string? Group() => null;
 
 
   private Metric? BuildMetric()
@@ -56,25 +58,25 @@ public abstract class AbstractAction
     var metricData = Metric();
     if (metricData == null) return null;
     var (id, metricType) = metricData.Value;
-    return MoBroItem
+    var withMetricCategory = MoBroItem
       .CreateMetric()
       .WithId(id)
       .WithLabel(Ids.Label(id), Ids.Description(id))
       .OfType(metricType)
-      .OfCategory(CoreCategory.Media)
-      .OfNoGroup()
+      .OfCategory(Category());
+    return (Group() != null ? withMetricCategory.OfGroup(Group()!) : withMetricCategory.OfNoGroup())
       .AsDynamicValue()
       .Build();
   }
 
   private Action BuildAction()
   {
-    var builder = MoBroItem
+    var withActionCategory = MoBroItem
       .CreateAction()
       .WithId(Id)
       .WithLabel(Ids.Label(Id), Ids.Description(Id))
-      .OfCategory(CoreCategory.Media)
-      .OfNoGroup()
+      .OfCategory(Category());
+    var builder = (Group() != null ? withActionCategory.OfGroup(Group()!) : withActionCategory.OfNoGroup())
       .WithMetric(Metric()?.Item1)
       .WithAsyncHandler(Handler);
 

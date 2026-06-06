@@ -14,6 +14,7 @@ public class OpenUrlAction : AbstractAction
   private const string UrlKey = Ids.ActionSettings.OpenUrl;
 
   protected override string Id => Ids.Action.OpenUrl;
+  protected override string? Group() => Ids.Group.Web;
 
   protected override Func<SettingsBuilder.INameStage, SettingsFieldBase>[] Settings() =>
   [

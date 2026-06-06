@@ -13,6 +13,7 @@ namespace MoBro.Plugin.MoBroActions.Actions;
 public class LockWorkstationAction : AbstractAction
 {
   protected override string Id => Ids.Action.LockWorkstation;
+  protected override string? Group() => Ids.Group.System;
 
   protected override Func<SettingsBuilder.INameStage, SettingsFieldBase>[] Settings() => [];
 

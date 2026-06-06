@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.Logging;
 using MoBro.Plugin.SDK;
+using MoBro.Plugin.SDK.Builders;
 using MoBro.Plugin.SDK.Services;
 
 namespace MoBro.Plugin.MoBroActions;
@@ -24,6 +25,26 @@ public sealed class Plugin : IMoBroPlugin
   public void Init()
   {
     _logger.LogInformation("Initializing MoBroActions Plugin...");
+
+    // Register category and groups
+    _service.Register(
+    [
+      MoBroItem
+        .CreateCategory()
+        .WithId(Ids.Category.MoBroActions)
+        .WithLabel(Ids.Label(Ids.Category.MoBroActions), Ids.Description(Ids.Category.MoBroActions))
+        .Build(),
+      MoBroItem
+        .CreateGroup()
+        .WithId(Ids.Group.System)
+        .WithLabel(Ids.Label(Ids.Group.System), Ids.Description(Ids.Group.System))
+        .Build(),
+      MoBroItem
+        .CreateGroup()
+        .WithId(Ids.Group.Web)
+        .WithLabel(Ids.Label(Ids.Group.Web), Ids.Description(Ids.Group.Web))
+        .Build(),
+    ]);
 
     // Scan for all classes implementing IAction 
     var actionTypes = typeof(Plugin).Assembly.GetTypes();

@@ -1,4 +1,11 @@
 {
+  "c_mobroactions_label": "Actions",
+  "c_mobroactions_desc": "Actions provided by the MoBro Actions plugin",
+  "g_system_label": "System",
+  "g_system_desc": "Actions that interact with the local system",
+  "g_web_label": "Web",
+  "g_web_desc": "Actions that interact with the web",
+
   "a_start_process_label": "Launch application",
   "a_start_process_desc": "Run an external program (path to its .exe file)",
   "a_invoke_script_label": "Invoke script",

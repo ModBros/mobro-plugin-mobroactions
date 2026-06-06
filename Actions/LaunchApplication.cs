@@ -15,6 +15,7 @@ public class LaunchApplication : AbstractAction
   private const string PathKey = Ids.ActionSettings.StarProcessExePath;
 
   protected override string Id => Ids.Action.StartProcess;
+  protected override string? Group() => Ids.Group.System;
 
   protected override Func<SettingsBuilder.INameStage, SettingsFieldBase>[] Settings() =>
   [

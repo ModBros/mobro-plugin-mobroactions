@@ -16,6 +16,7 @@ public class InvokeScript : AbstractAction
   private const string ShowShellKey = Ids.ActionSettings.InvokeScriptShowShell;
 
   protected override string Id => Ids.Action.InvokeScript;
+  protected override string? Group() => Ids.Group.System;
 
   protected override Func<SettingsBuilder.INameStage, SettingsFieldBase>[] Settings() =>
   [

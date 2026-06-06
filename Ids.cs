@@ -2,6 +2,17 @@ namespace MoBro.Plugin.MoBroActions;
 
 internal static class Ids
 {
+  internal static class Category
+  {
+    internal const string MoBroActions = "c_mobroactions";
+  }
+
+  internal static class Group
+  {
+    internal const string System = "g_system";
+    internal const string Web = "g_web";
+  }
+
   internal static class Action
   {
     internal const string StartProcess = "a_start_process";
