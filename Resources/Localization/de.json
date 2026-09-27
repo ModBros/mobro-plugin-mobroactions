@@ -32,5 +32,5 @@
   "s_webhook_body_label": "Anfrage-Body",
   "s_webhook_body_desc": "Optionaler Anfrage-Body (z. B. JSON-Payload)",
   "s_webhook_headers_label": "Anfrage-Header",
-  "s_webhook_headers_desc": "Optionale HTTP-Header, einer pro Zeile im Format 'Key: Value' (z. B. Content-Type: application/json)"
+  "s_webhook_headers_desc": "Optionale HTTP-Header im Format 'Key: Value', getrennt durch Zeilenumbrüche, | oder ; (z. B. Content-Type: application/json | Authorization: Bearer abc)"
 }

@@ -2,6 +2,7 @@ using System;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using MoBro.Plugin.SDK.Builders;
@@ -14,6 +15,10 @@ namespace MoBro.Plugin.MoBroActions.Actions;
 public class InvokeWebhookAction : AbstractAction
 {
   private static readonly HttpClient HttpClient = new();
+
+  // headers are separated by new lines or '|', or by ';' if followed by the next header name
+  // (a ';' within a header value such as "application/json; charset=utf-8" is kept)
+  private static readonly Regex HeaderSeparator = new(@"\r?\n|\||;(?=\s*[A-Za-z0-9-]+\s*:)", RegexOptions.Compiled);
 
   private const string UrlKey = Ids.ActionSettings.WebhookUrl;
   private const string MethodKey = Ids.ActionSettings.WebhookMethod;
@@ -101,11 +106,11 @@ public class InvokeWebhookAction : AbstractAction
       request.Content = new StringContent(body, Encoding.UTF8, IsJson(body) ? "application/json" : "text/plain");
     }
 
-    // Parse optional headers (one per line, format: "Key: Value")
+    // Parse optional headers (format: "Key: Value", separated by new lines, '|' or ';')
     var headersRaw = settings.GetValue<string>(HeadersKey, "").Trim();
     if (!string.IsNullOrWhiteSpace(headersRaw))
     {
-      foreach (var line in headersRaw.Split('\n'))
+      foreach (var line in HeaderSeparator.Split(headersRaw))
       {
         var trimmed = line.Trim();
         var separatorIndex = trimmed.IndexOf(':');
