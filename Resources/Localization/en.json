@@ -9,7 +9,7 @@
   "a_start_process_label": "Launch application",
   "a_start_process_desc": "Run an external program (path to its .exe file)",
   "a_invoke_script_label": "Invoke script",
-  "a_invoke_script_desc": "Run a script file (.bat, .cmd, or .ps1)",
+  "a_invoke_script_desc": "Run a script file (.bat, .cmd, or .ps1) with your user's permissions.",
   "a_lock_workstation_label": "Lock workstation",
   "a_lock_workstation_desc": "Immediately locks the current Windows session",
   "a_open_url_label": "Open URL",
