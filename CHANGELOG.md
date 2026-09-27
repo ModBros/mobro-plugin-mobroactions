@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - New action: **Invoke Webhook** - send a configurable HTTP request to any webhook URL
 - Organize actions into categories and groups
 
+### Changed
+
+- Updated MoBro SDK to v1.2.0
+
 ## 1.1.0 - 2026-05-26
 
 ### Changed
