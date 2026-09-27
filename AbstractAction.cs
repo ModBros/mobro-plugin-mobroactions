@@ -15,15 +15,6 @@ public abstract class AbstractAction
 {
   protected ILogger logger = null!;
 
-  private readonly Action _action;
-  private readonly Metric? _metric;
-
-  protected AbstractAction()
-  {
-    _action = BuildAction();
-    _metric = BuildMetric();
-  }
-
   public void SetLogger(ILogger logger)
   {
     this.logger = logger;
@@ -31,12 +22,15 @@ public abstract class AbstractAction
 
   public IMoBroItem[] GetItems()
   {
-    if (_metric == null)
+    // built here instead of in the constructor, as it calls members overridden by the (not yet constructed) subclass
+    var action = BuildAction();
+    var metric = BuildMetric();
+    if (metric == null)
     {
-      return [_action];
+      return [action];
     }
 
-    return [_action, _metric];
+    return [action, metric];
   }
 
   public virtual void Init()
