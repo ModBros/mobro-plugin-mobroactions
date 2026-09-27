@@ -14,7 +14,8 @@ namespace MoBro.Plugin.MoBroActions.Actions;
 
 public class InvokeWebhookAction : AbstractAction
 {
-  private static readonly HttpClient HttpClient = new();
+  // a webhook is triggered by a button press, so do not wait for the default of 100 seconds
+  private static readonly HttpClient HttpClient = new() { Timeout = TimeSpan.FromSeconds(15) };
 
   // headers are separated by new lines or '|', or by ';' if followed by the next header name
   // (a ';' within a header value such as "application/json; charset=utf-8" is kept)
@@ -156,6 +157,7 @@ public class InvokeWebhookAction : AbstractAction
 
   private async Task SendAsync(HttpRequestMessage request, string method, string url)
   {
+    using var _ = request;
     HttpResponseMessage response;
     try
     {
@@ -168,6 +170,7 @@ public class InvokeWebhookAction : AbstractAction
       throw;
     }
 
+    using var __ = response;
     if (!response.IsSuccessStatusCode)
     {
       logger.LogWarning("Webhook returned non-success status: {StatusCode} for {Method} {Url}",
