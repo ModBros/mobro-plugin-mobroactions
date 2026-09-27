@@ -28,7 +28,7 @@
   "s_webhook_url_label": "Webhook-URL",
   "s_webhook_url_desc": "Absolute URL des Webhook-Endpunkts (z. B. https://example.com/webhook)",
   "s_webhook_method_label": "HTTP-Methode",
-  "s_webhook_method_desc": "HTTP-Methode fA�r die Anfrage (GET, POST, PUT, PATCH, DELETE)",
+  "s_webhook_method_desc": "HTTP-Methode für die Anfrage (GET, POST, PUT, PATCH, DELETE)",
   "s_webhook_body_label": "Anfrage-Body",
   "s_webhook_body_desc": "Optionaler Anfrage-Body (z. B. JSON-Payload)",
   "s_webhook_headers_label": "Anfrage-Header",
