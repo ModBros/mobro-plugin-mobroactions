@@ -6,7 +6,7 @@
   "assembly": "Plugin.MoBroActions.dll",
   "localization": "Resources/Localization",
   "executionMode": "UserSession",
-  "repository": null,
+  "repository": "https://github.com/ModBros/mobro-plugin-mobroactions",
   "homepage": null,
   "tags": [
     "action",
