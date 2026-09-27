@@ -65,7 +65,7 @@ public class InvokeWebhookAction : AbstractAction
 
   protected override Task Handler(IMoBroSettings settings)
   {
-    var url = settings.GetValue<string>(UrlKey).Trim();
+    var url = settings.GetValue(UrlKey, "").Trim();
     if (!Uri.TryCreate(url, UriKind.Absolute, out var uri) ||
         (uri.Scheme != Uri.UriSchemeHttp && uri.Scheme != Uri.UriSchemeHttps))
     {
@@ -73,7 +73,7 @@ public class InvokeWebhookAction : AbstractAction
       return Task.FromException(new ArgumentException("Only http and https URLs are supported"));
     }
 
-    var method = settings.GetValue<string>(MethodKey, "GET").Trim().ToUpperInvariant() ?? "GET";
+    var method = settings.GetValue<string>(MethodKey, "GET").Trim().ToUpperInvariant();
     HttpMethod httpMethod;
     switch (method)
     {
