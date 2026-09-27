@@ -1,6 +1,7 @@
 using System;
 using System.Net.Http;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using MoBro.Plugin.SDK.Builders;
@@ -93,6 +94,13 @@ public class InvokeWebhookAction : AbstractAction
 
     var request = new HttpRequestMessage(httpMethod, uri);
 
+    // Attach optional body (the content type can be overridden by a Content-Type header)
+    var body = settings.GetValue<string>(BodyKey, "").Trim();
+    if (!string.IsNullOrWhiteSpace(body))
+    {
+      request.Content = new StringContent(body, Encoding.UTF8, IsJson(body) ? "application/json" : "text/plain");
+    }
+
     // Parse optional headers (one per line, format: "Key: Value")
     var headersRaw = settings.GetValue<string>(HeadersKey, "").Trim();
     if (!string.IsNullOrWhiteSpace(headersRaw))
@@ -106,19 +114,39 @@ public class InvokeWebhookAction : AbstractAction
         var headerValue = trimmed[(separatorIndex + 1)..].Trim();
         if (!string.IsNullOrWhiteSpace(headerName))
         {
-          request.Headers.TryAddWithoutValidation(headerName, headerValue);
+          AddHeader(request, headerName, headerValue);
         }
       }
     }
 
-    // Attach optional body
-    var body = settings.GetValue<string>(BodyKey, "").Trim();
-    if (!string.IsNullOrWhiteSpace(body))
+    return SendAsync(request, method, url);
+  }
+
+  private void AddHeader(HttpRequestMessage request, string name, string value)
+  {
+    if (request.Headers.TryAddWithoutValidation(name, value)) return;
+
+    // content headers (e.g. Content-Type) are not allowed on the request itself, only on its content
+    if (request.Content != null)
     {
-      request.Content = new StringContent(body, Encoding.UTF8);
+      request.Content.Headers.Remove(name);
+      if (request.Content.Headers.TryAddWithoutValidation(name, value)) return;
     }
 
-    return SendAsync(request, method, url);
+    logger.LogWarning("Ignoring webhook header {HeaderName} (content headers require a request body)", name);
+  }
+
+  private static bool IsJson(string body)
+  {
+    try
+    {
+      using var document = JsonDocument.Parse(body);
+      return document.RootElement.ValueKind is JsonValueKind.Object or JsonValueKind.Array;
+    }
+    catch (JsonException)
+    {
+      return false;
+    }
   }
 
   private async Task SendAsync(HttpRequestMessage request, string method, string url)
