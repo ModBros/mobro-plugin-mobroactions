@@ -38,7 +38,7 @@ public class LaunchApplication : AbstractAction
     var rawPath = settings.GetValue<string>(PathKey, "");
     if (string.IsNullOrWhiteSpace(rawPath))
     {
-      Logger.LogWarning("Empty path to .exe provided");
+      logger.LogWarning("Empty path to .exe provided");
       return Task.FromException(new ArgumentException("Path must not be empty"));
     }
 
@@ -48,17 +48,17 @@ public class LaunchApplication : AbstractAction
     // Validate extension defensively
     if (!string.Equals(Path.GetExtension(path), ".exe", StringComparison.OrdinalIgnoreCase))
     {
-      Logger.LogWarning("Rejected non-executable path: {ExePath}", path);
+      logger.LogWarning("Rejected non-executable path: {ExePath}", path);
       return Task.FromException(new ArgumentException("Path must be an executable"));
     }
 
     if (!File.Exists(path))
     {
-      Logger.LogWarning("Executable not found: {ExePath}", path);
+      logger.LogWarning("Executable not found: {ExePath}", path);
       return Task.FromException(new FileNotFoundException("Executable not found", path));
     }
 
-    Logger.LogInformation("Starting exe: {ExePath}", path);
+    logger.LogInformation("Starting exe: {ExePath}", path);
     try
     {
       var psi = new ProcessStartInfo
@@ -73,7 +73,7 @@ public class LaunchApplication : AbstractAction
     }
     catch (Exception e)
     {
-      Logger.LogError(e, "Failed to start exe: {ExePath}", path);
+      logger.LogError(e, "Failed to start exe: {ExePath}", path);
       return Task.FromException(e);
     }
 

@@ -48,14 +48,14 @@ public class InvokeScript : AbstractAction
     var rawPath = settings.GetValue<string>(PathKey, "");
     if (string.IsNullOrWhiteSpace(rawPath))
     {
-      Logger.LogWarning("Empty path to script provided");
+      logger.LogWarning("Empty path to script provided");
       return Task.FromException(new ArgumentException("Path must not be empty"));
     }
 
     var path = Environment.ExpandEnvironmentVariables(rawPath.Trim().Trim('"'));
     if (!File.Exists(path))
     {
-      Logger.LogWarning("Script not found: {ScriptPath}", path);
+      logger.LogWarning("Script not found: {ScriptPath}", path);
       return Task.FromException(new FileNotFoundException("Script not found", path));
     }
 
@@ -67,7 +67,7 @@ public class InvokeScript : AbstractAction
     {
       case ".bat":
       case ".cmd":
-        Logger.LogInformation("Invoking batch script: {ScriptPath}", path);
+        logger.LogInformation("Invoking batch script: {ScriptPath}", path);
         startInfo = new ProcessStartInfo
         {
           FileName = "cmd.exe",
@@ -80,7 +80,7 @@ public class InvokeScript : AbstractAction
         break;
 
       case ".ps1":
-        Logger.LogInformation("Invoking PowerShell script: {ScriptPath}", path);
+        logger.LogInformation("Invoking PowerShell script: {ScriptPath}", path);
         startInfo = new ProcessStartInfo
         {
           FileName = "powershell.exe",
@@ -93,7 +93,7 @@ public class InvokeScript : AbstractAction
         break;
 
       default:
-        Logger.LogWarning("Unsupported script extension: {Extension}", extension);
+        logger.LogWarning("Unsupported script extension: {Extension}", extension);
         return Task.FromException(new ArgumentException("Unsupported script extension"));
     }
 
@@ -105,7 +105,7 @@ public class InvokeScript : AbstractAction
     }
     catch (Exception e)
     {
-      Logger.LogError(e, "Failed to invoke script: {ScriptPath}", path);
+      logger.LogError(e, "Failed to invoke script: {ScriptPath}", path);
       return Task.FromException(e);
     }
 

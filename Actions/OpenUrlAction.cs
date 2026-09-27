@@ -34,20 +34,20 @@ public class OpenUrlAction : AbstractAction
     var url = settings.GetValue<string>(UrlKey, "")?.Trim();
     if (string.IsNullOrWhiteSpace(url))
     {
-      Logger.LogWarning("Empty URL provided");
+      logger.LogWarning("Empty URL provided");
       return Task.FromException(new ArgumentException("URL must not be empty"));
     }
 
     if (!Uri.TryCreate(url, UriKind.Absolute, out var uri) ||
         (uri.Scheme != Uri.UriSchemeHttp && uri.Scheme != Uri.UriSchemeHttps))
     {
-      Logger.LogWarning("Invalid or unsupported URL: {Url}", url);
+      logger.LogWarning("Invalid or unsupported URL: {Url}", url);
       return Task.FromException(new ArgumentException("Only http and https URLs are supported"));
     }
 
     try
     {
-      Logger.LogInformation("Opening URL: {Url}", url);
+      logger.LogInformation("Opening URL: {Url}", url);
       var psi = new ProcessStartInfo
       {
         FileName = url,
@@ -57,7 +57,7 @@ public class OpenUrlAction : AbstractAction
     }
     catch (Exception ex)
     {
-      Logger.LogError(ex, "Failed to open URL: {Url}", url);
+      logger.LogError(ex, "Failed to open URL: {Url}", url);
       return Task.FromException(ex);
     }
 

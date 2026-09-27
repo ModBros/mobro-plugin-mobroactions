@@ -12,6 +12,7 @@ directly from your MoBro device.
 - **Invoke Script**: Run automation scripts with ease (supports `.bat`, `.cmd`, `.ps1`).
 - **Open URL**: Launch your favorite websites in your default browser.
 - **Lock Workstation**: Instantly secure your PC with a single tap.
+- **Invoke Webhook**: Send a configurable HTTP request (GET, POST, PUT, PATCH, DELETE) to any webhook URL, with optional body and headers.
 
 ---
 

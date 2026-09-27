@@ -14,6 +14,8 @@
   "a_lock_workstation_desc": "Immediately locks the current Windows session",
   "a_open_url_label": "Open URL",
   "a_open_url_desc": "Opens a URL with the system's default application (browser)",
+  "a_invoke_webhook_label": "Invoke Webhook",
+  "a_invoke_webhook_desc": "Send an HTTP request to a configurable webhook URL",
 
   "s_start_process_exe_path_label": "Executable path",
   "s_start_process_exe_path_desc": "Absolute path to the application's .exe file (e.g., C:\\Program Files\\App\\app.exe)",
@@ -22,5 +24,13 @@
   "s_invoke_script_show_shell_label": "Show shell window",
   "s_invoke_script_show_shell_desc": "Open a console window while running the script (otherwise runs hidden)",
   "s_open_url_label": "URL",
-  "s_open_url_desc": "Absolute URL starting with http or https (e.g., https://mobro.app)"
+  "s_open_url_desc": "Absolute URL starting with http or https (e.g., https://mobro.app)",
+  "s_webhook_url_label": "Webhook URL",
+  "s_webhook_url_desc": "Absolute URL of the webhook endpoint (e.g., https://example.com/webhook)",
+  "s_webhook_method_label": "HTTP Method",
+  "s_webhook_method_desc": "HTTP method to use for the request (GET, POST, PUT, PATCH, DELETE)",
+  "s_webhook_body_label": "Request Body",
+  "s_webhook_body_desc": "Optional request body (e.g., JSON payload)",
+  "s_webhook_headers_label": "Request Headers",
+  "s_webhook_headers_desc": "Optional HTTP headers, one per line in the format 'Key: Value' (e.g., Content-Type: application/json)"
 }

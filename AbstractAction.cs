@@ -13,7 +13,7 @@ namespace MoBro.Plugin.MoBroActions;
 
 public abstract class AbstractAction
 {
-  protected ILogger Logger = null!;
+  protected ILogger logger = null!;
 
   private readonly Action _action;
   private readonly Metric? _metric;
@@ -26,7 +26,7 @@ public abstract class AbstractAction
 
   public void SetLogger(ILogger logger)
   {
-    Logger = logger;
+    this.logger = logger;
   }
 
   public IMoBroItem[] GetItems()

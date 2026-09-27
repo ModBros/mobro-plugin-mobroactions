@@ -24,11 +24,11 @@ public class LockWorkstationAction : AbstractAction
     if (!LockWorkStation())
     {
       var error = Marshal.GetLastPInvokeError();
-      Logger.LogError("Failed to lock workstation. Win32Error={ErrorCode}", error);
+      logger.LogError("Failed to lock workstation. Win32Error={ErrorCode}", error);
       return Task.FromException(new Win32Exception(error));
     }
 
-    Logger.LogInformation("Workstation locked");
+    logger.LogInformation("Workstation locked");
     return Task.CompletedTask;
   }
 
