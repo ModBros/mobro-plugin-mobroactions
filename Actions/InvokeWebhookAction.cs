@@ -75,30 +75,13 @@ public class InvokeWebhookAction : AbstractAction
     }
 
     var method = settings.GetValue<string>(MethodKey, "GET").Trim().ToUpperInvariant();
-    HttpMethod httpMethod;
-    switch (method)
+    if (method is not ("GET" or "POST" or "PUT" or "PATCH" or "DELETE"))
     {
-      case "GET":
-        httpMethod = HttpMethod.Get;
-        break;
-      case "POST":
-        httpMethod = HttpMethod.Post;
-        break;
-      case "PUT":
-        httpMethod = HttpMethod.Put;
-        break;
-      case "PATCH":
-        httpMethod = HttpMethod.Patch;
-        break;
-      case "DELETE":
-        httpMethod = HttpMethod.Delete;
-        break;
-      default:
-        logger.LogWarning("Unsupported HTTP method: {Method}", method);
-        return Task.FromException(new ArgumentException($"Unsupported HTTP method: {method}"));
+      logger.LogWarning("Unsupported HTTP method: {Method}", method);
+      return Task.FromException(new ArgumentException($"Unsupported HTTP method: {method}"));
     }
 
-    var request = new HttpRequestMessage(httpMethod, uri);
+    var request = new HttpRequestMessage(new HttpMethod(method), uri);
 
     // Attach optional body (the content type can be overridden by a Content-Type header)
     var body = settings.GetValue<string>(BodyKey, "").Trim();
@@ -125,7 +108,8 @@ public class InvokeWebhookAction : AbstractAction
       }
     }
 
-    return SendAsync(request, method, url);
+    // only the host is logged, as webhook URLs often contain secrets (e.g. Discord tokens)
+    return SendAsync(request, method, uri.Host);
   }
 
   private void AddHeader(HttpRequestMessage request, string name, string value)
@@ -155,26 +139,26 @@ public class InvokeWebhookAction : AbstractAction
     }
   }
 
-  private async Task SendAsync(HttpRequestMessage request, string method, string url)
+  private async Task SendAsync(HttpRequestMessage request, string method, string host)
   {
     using var _ = request;
     HttpResponseMessage response;
     try
     {
-      logger.LogInformation("Invoking webhook: {Method} {Url}", method, url);
+      logger.LogInformation("Invoking webhook: {Method} {Host}", method, host);
       response = await HttpClient.SendAsync(request);
     }
     catch (Exception ex)
     {
-      logger.LogError(ex, "Failed to invoke webhook: {Method} {Url}", method, url);
+      logger.LogError(ex, "Failed to invoke webhook: {Method} {Host}", method, host);
       throw;
     }
 
     using var __ = response;
     if (!response.IsSuccessStatusCode)
     {
-      logger.LogWarning("Webhook returned non-success status: {StatusCode} for {Method} {Url}",
-        (int)response.StatusCode, method, url);
+      logger.LogWarning("Webhook returned non-success status: {StatusCode} for {Method} {Host}",
+        (int)response.StatusCode, method, host);
 
       throw new HttpRequestException(
         $"Webhook request failed with status {(int)response.StatusCode} ({response.ReasonPhrase})");
